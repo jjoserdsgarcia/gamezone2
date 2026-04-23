@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GameZone</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #1b2838;
+            color: #c7d5e0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #171a21;
+        }
+
+        .navbar-brand {
+            color: #66c0f4 !important;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: url('https://via.placeholder.com/1200x500') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-left: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #ffffff;
+        }
+
+        .btn-steam {
+            background-color: #66c0f4;
+            color: #000;
+            border: none;
+        }
+
+        .btn-steam:hover {
+            background-color: #417a9b;
+            color: white;
+        }
+
+        .card {
+            background-color: #2a475e;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            color: #ffffff;
+        }
+
+        .price {
+            color: #66c0f4;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #171a21;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img src="{% static 'core/img/logo.png'%}" alt="GameZone Logo" style="width: 300px;">
+            <a class="navbar-brand" href="#">GameZone</a>
+
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                ☰
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-light" href="#">Loja</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#">Biblioteca</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#">Comunidade</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <img src="{% static 'core/img/logo2.png' %}" alt="GameZone Logo"
+                style="width: 800px; height: 450px; object-fit: contain;">
+
+            <h1>Bem-vindo à GameZone</h1>
+            <p>Descubra, compre e jogue os melhores títulos</p>
+            <a href="#" class="btn btn-steam btn-lg mt-3">Ver Jogos</a>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <div class="container my-5">
+        <h2 class="mb-4">Em destaque</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Cyber Adventure</h5>
+                        <p class="price">R$ 99,90</p>
+                        <a href="#" class="btn btn-steam w-100">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Speed Racer X</h5>
+                        <p class="price">R$ 59,90</p>
+                        <a href="#" class="btn btn-steam w-100">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">War Legends</h5>
+                        <p class="price">R$ 149,90</p>
+                        <a href="#" class="btn btn-steam w-100">Comprar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center p-3">
+        <p>© 2026 GameZone - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
