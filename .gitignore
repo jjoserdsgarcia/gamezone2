@@ -1,0 +1,4 @@
+core/__pycache__/*
+setup/__pycache__/*
+
+db.sqlite3
