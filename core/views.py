@@ -17,4 +17,5 @@ def paginaloja(request):
 def paginabiblioteca(request):
     from .models import Library
     library = Library.objects.all()
+    print (library)
     return render(request, 'core/paginabiblioteca.html', {'library': library})

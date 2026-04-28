@@ -109,15 +109,16 @@
                 </thead>
                 <tbody>
 
-                    {% for products in library %}
+                    {% for lib in library %}
+
                     <tr>
                         <td>
-                            <img src="{% static products.image %}" class="game-img">
+                            <img src="{% static lib.product.image %}" class="game-img">
 
                         </td>
-                        <td>{{ products.name }}</td>
-                        <td>{{ products.category }}</td>
-                        <td>{{ products.description|truncatechars:190 }}</td>
+                        <td>{{ lib.product.name }}</td>
+                        <td>{{ lib.product.category }}</td>
+                        <td>{{ lib.product.description|truncatechars:90 }}</td>
 
                         <a href="{% url 'paginainit' %}" class="btn btn-steam btn-sm">
                             Jogar
