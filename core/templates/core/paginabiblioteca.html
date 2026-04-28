@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GameZone - Biblioteca</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #1b2838;
+            color: #c7d5e0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #171a21;
+        }
+
+        .navbar-brand {
+            color: #66c0f4 !important;
+            font-weight: bold;
+        }
+
+        .table {
+            color: #c7d5e0;
+        }
+
+        .table thead {
+            background-color: #2a475e;
+        }
+
+        .table tbody tr {
+            background-color: #2a475e;
+            transition: 0.2s;
+        }
+
+        .table tbody tr:hover {
+            background-color: #3b6a8a;
+        }
+
+        .btn-steam {
+            background-color: #66c0f4;
+            color: #000;
+            border: none;
+        }
+
+        .btn-steam:hover {
+            background-color: #417a9b;
+            color: white;
+        }
+
+        footer {
+            background-color: #171a21;
+        }
+
+        .game-img {
+            width: 80px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img src="{% static 'core/img/logo.png'%}" style="width: 200px;">
+            <a class="navbar-brand" href="#">GameZone</a>
+
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                ☰
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'paginainit' %}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'paginaloja' %}">Loja</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo -->
+    <div class="container my-5">
+        <h2 class="mb-4">Minha Biblioteca</h2>
+
+        <div class="table-responsive">
+            <table class="table align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Capa</th>
+                        <th>Jogo</th>
+                        <th>Categoria</th>
+                        <th>Descrição</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for products in library %}
+                    <tr>
+                        <td>
+                            <img src="{% static products.image %}" class="game-img">
+
+                        </td>
+                        <td>{{ products.name }}</td>
+                        <td>{{ products.category }}</td>
+                        <td>{{ products.description|truncatechars:190 }}</td>
+
+                        <a href="{% url 'paginainit' %}" class="btn btn-steam btn-sm">
+                            Jogar
+                        </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">Você ainda não possui jogos na biblioteca.</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center p-3">
+        <p>© 2026 GameZone - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

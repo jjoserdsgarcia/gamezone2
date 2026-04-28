@@ -90,7 +90,8 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-light" href="{% url 'paginaloja' %}">Loja</a></li>
-                    <li class="nav-item"><a class="nav-link text-light"href=" {% url 'paginabiblioteca' %}">Biblioteca</a></li>
+                    <li class="nav-item"><a class="nav-link text-light"
+                            href=" {% url 'paginabiblioteca' %}">Biblioteca</a></li>
                 </ul>
             </div>
         </div>
@@ -104,7 +105,7 @@
 
             <h1>Bem-vindo à GameZone</h1>
             <p>Descubra, compre e jogue os melhores títulos</p>
-            <a href="#" class="btn btn-steam btn-lg mt-3">Ver Jogos</a>
+            <a href="{% url 'paginaloja' %}" class="btn btn-steam btn-lg mt-3">Ver Jogos</a>
         </div>
     </section>
 
@@ -120,7 +121,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Cyberpunk 2077</h5>
                         <p class="price">R$ 259,90</p>
-                        <a href="#" class="btn btn-steam w-100">Comprar</a>
+                        <a href="{% url 'paginaloja' %}" class="btn btn-steam w-100">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -131,7 +132,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Minecraft</h5>
                         <p class="price">R$ 59,90</p>
-                        <a href="#" class="btn btn-steam w-100">Comprar</a>
+                        <a href="{% url 'paginaloja' %}" class="btn btn-steam w-100">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -144,7 +145,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Red Dead Redemption 2</h5>
                         <p class="price">R$ 299,90</p>
-                        <a href="#" class="btn btn-steam w-100">Comprar</a>
+                        <a href="{% url 'paginaloja' %}" class="btn btn-steam w-100">Comprar</a>
                     </div>
                 </div>
             </div>

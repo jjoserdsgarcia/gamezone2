@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GameZone - Loja</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #1b2838;
+            color: #c7d5e0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #171a21;
+        }
+
+        .navbar-brand {
+            color: #66c0f4 !important;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: #2a475e;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            color: #ffffff;
+        }
+
+        .price {
+            color: #66c0f4;
+            font-weight: bold;
+        }
+
+        .btn-steam {
+            background-color: #66c0f4;
+            color: #000;
+            border: none;
+        }
+
+        .btn-steam:hover {
+            background-color: #417a9b;
+            color: white;
+        }
+
+        .search-bar {
+            background-color: #2a475e;
+            border: none;
+            color: white;
+        }
+
+        footer {
+            background-color: #171a21;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img src="{% static 'core/img/logo.png'%}" style="width: 200px;">
+            <a class="navbar-brand" href="#">GameZone</a>
+
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                ☰
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-light" href="{% url 'paginainit' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link text-light"
+                            href="{% url 'paginabiblioteca' %}">Biblioteca</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Loja -->
+    <div class="container my-4">
+        <h2>Loja</h2>
+
+        <!-- Barra de busca -->
+        <form method="GET" class="d-flex my-3">
+            <input class="form-control me-2 search-bar" type="search" name="q" placeholder="Buscar jogos...">
+            <button class="btn btn-steam" type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Lista de jogos -->
+    <div class="container">
+        <div class="row g-4">
+
+            {% for products in products %}
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="{% static products.image %}" class="card-img-top"
+                        style="height: 180px; object-fit: cover;">
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ products.name }}</h5>
+
+                        <p class="small text-light">
+                            {{ products.description|truncatechars:200 }}
+
+                        </p>
+                        <p class="small text-light">Categoria: {{ products.category.name }}</p>
+
+                        <div class="mt-auto">
+                            <p class="price">R$ {{ products.price }}</p>
+                            <a href="{% url 'paginaloja' %}" class="btn btn-steam w-100">
+                                Comprar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>Nenhum jogo encontrado.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center p-3 mt-5">
+        <p>© 2026 GameZone - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

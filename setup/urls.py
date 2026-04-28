@@ -19,11 +19,14 @@ from django.urls import path
 from core.views import paginainit, admin
 from django.http import HttpResponse
 from django.template import loader
+from core.views import paginaloja, paginabiblioteca
 
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('init/', paginainit, name='paginainit')
+    path('init/', paginainit, name='paginainit'),
+    path('loja/', paginaloja, name='paginaloja'),
+    path('biblioteca/', paginabiblioteca, name='paginabiblioteca'),
 
 ]
