@@ -105,23 +105,31 @@
     <div class="container">
         <div class="row g-4">
 
-            {% for products in products %}
+            {% for product in products %}
+
+
             <div class="col-md-3">
                 <div class="card h-100">
-                    <img src="{% static products.image %}" class="card-img-top"
+                    <img src="{% static product.image %}" class="card-img-top"
                         style="height: 180px; object-fit: cover;">
 
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ products.name }}</h5>
+                        <h5 class="card-title">{{ product.name }}</h5>
 
                         <p class="small text-light">
-                            {{ products.description|truncatechars:200 }}
+                            {{ product.description|truncatechars:200 }}
+
 
                         </p>
-                        <p class="small text-light">Categoria: {{ products.category.name }}</p>
+                        <p class="small text-light">Categoria: {{ product.category.name }}</p>
+                        {% if product.stock_set.first.quantity > 0 %}
+                        <span class="badge bg-success mb-2">Em estoque</span>
+                        {% else %}
+                        <span class="badge bg-danger mb-2">Esgotado</span>
+                        {% endif %}
 
                         <div class="mt-auto">
-                            <p class="price">R$ {{ products.price }}</p>
+                            <p class="price">R$ {{ product.price }}</p>
                             <a href="{% url 'paginaloja' %}" class="btn btn-steam w-100">
                                 Comprar
                             </a>

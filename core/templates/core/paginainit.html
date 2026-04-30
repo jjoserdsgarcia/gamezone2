@@ -27,7 +27,7 @@
         }
 
         .hero {
-            background: url('https://via.placeholder.com/1200x500') center/cover no-repeat;
+
             height: 80vh;
             display: flex;
             align-items: center;
@@ -89,9 +89,21 @@
 
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-light" href="{% url 'paginaloja' %}">Loja</a></li>
-                    <li class="nav-item"><a class="nav-link text-light"
-                            href=" {% url 'paginabiblioteca' %}">Biblioteca</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'paginabiblioteca' %}">Biblioteca</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link text-light btn btn-link">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'paginalogin' %}">Login</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
