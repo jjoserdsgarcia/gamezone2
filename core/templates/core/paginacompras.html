@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout - GameZone</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #1b2838;
+            color: #c7d5e0;
+        }
+
+        .navbar {
+            background-color: #171a21;
+        }
+
+        .navbar-brand {
+            color: #66c0f4 !important;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: #2a475e;
+            border: none;
+        }
+
+        .btn-steam {
+            background-color: #66c0f4;
+            border: none;
+            color: black;
+        }
+
+        .btn-steam:hover {
+            background-color: #417a9b;
+            color: white;
+        }
+
+        .table {
+            color: white;
+        }
+
+        footer {
+            background-color: #171a21;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img src="{% static 'core/img/logo.png'%}" style="width: 180px;">
+            <a class="navbar-brand" href="#">GameZone</a>
+
+            <div class="ms-auto">
+                <a href="{% url 'paginaloja' %}" class="btn btn-steam">Continuar comprando</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+
+        <h2 class="mb-4">🛒 Seu Carrinho</h2>
+
+        {% if carrinho %}
+        <div class="row">
+
+            <!-- Lista de produtos -->
+            <div class="col-md-8">
+                <div class="card p-3">
+                    <table class="table align-middle text-center">
+                        <thead>
+                            <tr>
+                                <th>Jogo</th>
+                                <th>Preço</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in Orders %}
+                            <tr>
+                                <td class="d-flex align-items-center gap-3">
+                                    <img src="{% static order.products.image %}" width="70">
+                                    {{ order.products.name }}
+                                </td>
+                                <td>R$ {{ order.products.price }}</td>
+                                <td>
+                                    <a href="{% url 'remover_carrinho' order.id %}" class="btn btn-danger btn-sm">
+                                        Remover
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Resumo + pagamento -->
+            <div class="col-md-4">
+                <div class="card p-4">
+
+                    <h4>Resumo</h4>
+                    <hr>
+
+                    <p>Itens: {{ carrinho|length }}</p>
+                    <h5>Total: <strong>R$ {{ total }}</strong></h5>
+
+                    <hr>
+
+                    <h5>Pagamento</h5>
+
+                    <form method="POST" action="{% url 'finalizar_compra' %}">
+                        {% csrf_token %}
+
+                        <div class="mb-2">
+                            <label>Nome no cartão</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="mb-2">
+                            <label>Número do cartão</label>
+                            <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label>Validade</label>
+                                <input type="text" class="form-control" placeholder="MM/AA" required>
+                            </div>
+                            <div class="col">
+                                <label>CVV</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-steam w-100 mt-3">
+                            Finalizar Compra
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% else %}
+        <div class="alert alert-warning">
+            Seu carrinho está vazio.
+        </div>
+        {% endif %}
+
+    </div>
+
+    <footer class="text-center p-3">
+        <p>© 2026 GameZone</p>
+    </footer>
+
+
+</body>
+
+</html>

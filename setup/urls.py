@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import  logout_view, paginacriarconta, paginainit, admin
+from core.views import  logout_view, paginacompras, paginacriarconta, paginainit, admin
 from django.http import HttpResponse
 from django.template import loader
 from core.views import paginaloja, paginabiblioteca, paginalogin
@@ -31,5 +31,6 @@ urlpatterns = [
     path('login/', paginalogin, name='paginalogin'),
     path('criarconta/', paginacriarconta, name='paginacriarconta'),
     path('logout/', logout_view, name='logout'),
+    path('compras/', paginacompras, name='paginacompras'),
 
 ]

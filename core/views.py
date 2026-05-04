@@ -56,3 +56,8 @@ def paginacriarconta(request):
 def logout_view(request):
     logout(request)
     return redirect('paginainit')
+
+def paginacompras(request):
+    from .models import Orders
+    orders = Orders.objects.filter(user=request.user)
+    return render(request, 'core/paginacompras.html', {'orders': orders})
