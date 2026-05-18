@@ -1,0 +1,34 @@
+{% if luminarias %}
+<table>
+    <thead>
+        <tr>
+            <th>Modelo</th>
+            <th>Potência</th>
+            <th>Cor</th>
+            <th>Preco</th>
+            <th>Estoque</th>
+            <th>Ativo</th>
+            <th>Acoes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for luminario in luminarias %}
+        <tr>
+            <td>{{ luminario.modelo }}</td>
+            <td>{{ luminario.potencia }}</td>
+            <td>{{ luminario.cor }}</td>
+            <td>{{ luminario.preco|default:"-" }}</td>
+            <td>{{ luminario.estoque|default:"-" }}</td>
+            <td>{{ luminario.ativo|yesno:"Sim,Nao" }}</td>
+            <td>
+                <div class="acoes">
+
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Nenhuma luminária cadastrada ainda.</p>
+{% endif %}

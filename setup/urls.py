@@ -15,12 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from core.views import  logout_view, paginacompras, paginacriarconta, paginainit, admin
+from django.urls import include, path
+from core.views import  ProductsViewSet, TimesViewSet, VoleiViewSet, logout_view, paginacompras, paginacriarconta, paginainit, admin
 from django.http import HttpResponse
 from django.template import loader
-from core.views import paginaloja, paginabiblioteca, paginalogin
+from core.views import paginaloja, paginabiblioteca, paginalogin, LuminariaListView
+from rest_framework.routers import DefaultRouter
 
+router = DefaultRouter()
+router.register(r'products', ProductsViewSet, basename='products')
+router.register(r'volei', VoleiViewSet, basename='volei')
+router.register(r'times', TimesViewSet, basename='times')
 
 urlpatterns = [
 
@@ -32,5 +37,6 @@ urlpatterns = [
     path('criarconta/', paginacriarconta, name='paginacriarconta'),
     path('logout/', logout_view, name='logout'),
     path('compras/', paginacompras, name='paginacompras'),
-
+    path('luminarias/', LuminariaListView.as_view(), name= 'luminaria_lista'),
+    path('api/', include(router.urls)),
 ]

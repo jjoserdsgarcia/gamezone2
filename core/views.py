@@ -4,8 +4,14 @@ from django.template import loader
 from django.contrib import admin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Products, Categories, Stock, Library, Orders
+
+from core.serializers import  ProductsSerializer, VoleiSerializer, TimesSerializer
+from .models import Products, Categories, Stock, Library, Orders, Luminaria, Volei, Times
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from rest_framework import viewsets
 
 from django.contrib.auth.models import User
 
@@ -16,6 +22,9 @@ def paginainit(request):
     return render(request, 'core/paginainit.html')
 
 def paginaloja(request):
+    messages.info(request, 'Bem-vindo à nossa loja digital.')
+    messages.warning(request, 'calma ai mano')
+    messages.error(request, 'god lil bro errou tudo')
     from .models import Products
     products = Products.objects.all()
     return render(request, 'core/paginaloja.html', {'products': products})
@@ -61,3 +70,25 @@ def paginacompras(request):
     from .models import Orders
     orders = Orders.objects.filter(user=request.user)
     return render(request, 'core/paginacompras.html', {'orders': orders})
+
+
+class LuminariaListView(ListView):
+    model = Luminaria
+    template_name = 'core/luminaria/lista.html'
+    context_object_name = 'luminarias'
+
+class LibraryListView(ListView):
+    model = Library
+    template_name = 'core/librari/library.html'
+
+class ProductsViewSet(viewsets.ModelViewSet):
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializer
+
+class VoleiViewSet(viewsets.ModelViewSet):
+    queryset = Volei.objects.all()
+    serializer_class = VoleiSerializer
+
+class TimesViewSet(viewsets.ModelViewSet):
+    queryset = Times.objects.all()
+    serializer_class = TimesSerializer

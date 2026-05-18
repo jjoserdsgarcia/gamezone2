@@ -1,0 +1,27 @@
+{% if library %}
+<table>
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Produto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lib in library %}
+        <tr>
+            <td>{{ lib.user }}</td>
+            <td>{{ lib.product }}</td>
+            <td>
+                <div class="acoes">
+
+
+
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Nenhuma luminária cadastrada ainda.</p>
+{% endif %}
