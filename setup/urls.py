@@ -21,6 +21,7 @@ from django.http import HttpResponse
 from django.template import loader
 from core.views import paginaloja, paginabiblioteca, paginalogin, LuminariaListView
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 
 router = DefaultRouter()
 router.register(r'products', ProductsViewSet, basename='products')
@@ -39,4 +40,5 @@ urlpatterns = [
     path('compras/', paginacompras, name='paginacompras'),
     path('luminarias/', LuminariaListView.as_view(), name= 'luminaria_lista'),
     path('api/', include(router.urls)),
+    path('api/token', obtain_auth_token, name='api_token_auth'),
 ]

@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth.models import User
 
@@ -84,11 +85,15 @@ class LibraryListView(ListView):
 class ProductsViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class VoleiViewSet(viewsets.ModelViewSet):
     queryset = Volei.objects.all()
     serializer_class = VoleiSerializer
+    permission_classes = [IsAuthenticated]
 
 class TimesViewSet(viewsets.ModelViewSet):
     queryset = Times.objects.all()
     serializer_class = TimesSerializer
+    permission_classes = [IsAuthenticated]
